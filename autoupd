@@ -1,0 +1,31 @@
+#! /bin/bash
+
+#Check for root access.
+if [ $(id -u) != "0" ]; then
+	echo  Hello "$USER"\:
+        echo "You must have 'sudo' access to run this script."
+        
+fi
+
+echo You are about to execute a total system upgrade. 
+read -r -p "Are you sure you want to continue? [y/n] " response
+if [[ "$response" =~ ^([nN][oO]|[nN])$ ]]
+then 
+	exit 0
+
+elif [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+	sudo echo "Thank you. Commencing system upgrade..."
+	sudo apt update
+	sudo apt upgrade -y
+	sudo apt dist-upgrade -y
+	sudo apt autoremove -y
+	sudo apt autoclean
+	echo "$(date +"%F %T") Process complete. Device updated"
+
+else 
+	echo "Incorrect response. Please execute script again."
+	exit 0
+fi
+
+exit 0
