@@ -14,7 +14,7 @@ Step 2
 Add the filepath to `.bashrc`
 <br>
 
-`$ nano .bashrc`
+`$ nano ~/.bashrc`
 
 Scroll to the end and add 
 <br>
